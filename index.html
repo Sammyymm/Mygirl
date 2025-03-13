@@ -12,13 +12,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('https://streamable.com/q7p0bq') no-repeat center center/cover;
+            background: url('YOUR_BACKGROUND_IMAGE_LINK_HERE.jpg') no-repeat center center/cover;
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
             transition: opacity 1s;
         }
-        #content {
+        #content, #questions, #gif-container, #video-container {
             display: none;
             width: 90%;
             max-width: 600px;
@@ -39,16 +39,7 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-        .shrinking {
-            transform: scale(0.8);
-        }
-        .growing {
-            transform: scale(1.2);
-        }
-        #gif-container {
-            display: none;
-        }
-        #video-container {
+        #gif-container, #video-container {
             display: none;
         }
     </style>
@@ -59,15 +50,10 @@
 <div id="content">
     <h2>My Love, I'm Sorry...</h2>
     <p>
-        
+        I've simped for you, loved you, and let my guard down completely.  
         At this point, if you ever leave me, I'd be in total devastation.  
         I trust you with everything, and I just hope you never give me a reason to regret it.  
-        I love you more than words can say.  I know I messed up, and I deeply regret it. The last thing I ever want is to make you feel unappreciated, unheard, or hurt.  
-            You mean the absolute world to me, and I don’t take you for granted.  
-            I love you more than words can express, and I just want to make things right between us.  
-            I’ve left my guard down completely for you, and at this point, if you ever left, I’d be devastated.  
-            You’re the one I trust with everything, and I never want to do anything to make you regret choosing me.  
-            Please forgive me, moyin. You’re too special to me to let this come between us. 💙  
+        I love you more than words can say.  
     </p>
     <button onclick="startQuestions()">Continue</button>
 </div>
@@ -124,8 +110,8 @@
 
 <!-- Surprise Video -->
 <div id="video-container">
-    <video width="90%" controls autoplay>
-        <source src="https://streamable.com/q7p0bq" type="video/mp4">
+    <video width="100%" controls autoplay>
+        <source src="YOUR_VIDEO_LINK_HERE.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <h2>No matter what, I love you. I'm here when you're ready ❤️.</h2>
@@ -133,7 +119,7 @@
 
 <!-- Background Music -->
 <audio id="background-music" loop autoplay>
-    <source src="https://files.catbox.moe/j0odtp.mp3" type="audio/mp3">
+    <source src="YOUR_MUSIC_LINK_HERE.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -155,12 +141,25 @@
             questions[currentQuestion].style.display = 'block';
 
             if (!answeredYes) {
-                yesButtons.forEach(btn => btn.classList.add('growing'));
-                noButtons.forEach(btn => btn.classList.add('shrinking'));
+                resizeButtons();
             }
         } else {
             showVideo();
         }
+    }
+
+    function resizeButtons() {
+        yesButtons.forEach(btn => {
+            let currentSize = parseFloat(window.getComputedStyle(btn).fontSize);
+            btn.style.fontSize = (currentSize + 4) + "px"; // Grow
+        });
+
+        noButtons.forEach(btn => {
+            let currentSize = parseFloat(window.getComputedStyle(btn).fontSize);
+            if (currentSize > 10) { 
+                btn.style.fontSize = (currentSize - 2) + "px"; // Shrink but stay visible
+            }
+        });
     }
 
     function forgiveMe() {
@@ -173,7 +172,6 @@
         document.getElementById('video-container').style.display = 'block';
     }
 
-    // Show content after 5 seconds
     setTimeout(() => {
         document.getElementById('content').style.display = 'block';
     }, 5000);

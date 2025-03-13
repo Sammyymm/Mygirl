@@ -135,9 +135,18 @@
 </div>
 
 <!-- Background Music -->
-<audio id="background-music" loop autoplay>
-    <source src="https://files.catbox.moe/j0odtp.mp3" type="audio/mp3">
+<audio id="bg-music" loop>
+    <source src="https://files.catbox.moe/j0odtp.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let music = document.getElementById("bg-music");
+        music.play().catch(() => {
+            console.log("Autoplay blocked, user needs to interact.");
+        });
+    });
+</script>
 
 <script>
     let currentQuestion = 0;

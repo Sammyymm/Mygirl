@@ -40,10 +40,10 @@
             transition: all 0.3s ease;
         }
         .shrinking {
-            transform: scale(0.7);
+            transform: scale(0.8);
         }
         .growing {
-            transform: scale(1.3);
+            transform: scale(1.2);
         }
         #gif-container {
             display: none;
@@ -59,6 +59,7 @@
 <div id="content">
     <h2>My Love, I'm Sorry...</h2>
     <p>
+        
         At this point, if you ever leave me, I'd be in total devastation.  
         I trust you with everything, and I just hope you never give me a reason to regret it.  
         I love you more than words can say.  I know I messed up, and I deeply regret it. The last thing I ever want is to make you feel unappreciated, unheard, or hurt.  
@@ -66,7 +67,7 @@
             I love you more than words can express, and I just want to make things right between us.  
             I’ve left my guard down completely for you, and at this point, if you ever left, I’d be devastated.  
             You’re the one I trust with everything, and I never want to do anything to make you regret choosing me.  
-            Please forgive me, moyin. You’re too special to me to let this come between us. 💙
+            Please forgive me, moyin. You’re too special to me to let this come between us. 💙  
     </p>
     <button onclick="startQuestions()">Continue</button>
 </div>
@@ -124,7 +125,7 @@
 <!-- Surprise Video -->
 <div id="video-container">
     <video width="90%" controls autoplay>
-        <source src="https://drive.google.com/uc?export=download&id=114p_FYiedXmuPpx6lyF0x8gEHyaw4mMJ" type="video/mp4">
+        <source src="https://streamable.com/q7p0bq" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <h2>No matter what, I love you. I'm here when you're ready ❤️.</h2>
@@ -132,13 +133,15 @@
 
 <!-- Background Music -->
 <audio id="background-music" loop autoplay>
-    <source src="https://drive.google.com/uc?export=download&id=1fSaZfdc2bPgLJR4kZTDndMN_A4YIvH_b" type="audio/mp3">
+    <source src="https://files.catbox.moe/j0odtp.mp3" type="audio/mp3">
 </audio>
 
 <script>
     let currentQuestion = 0;
     const questions = document.querySelectorAll('.question-container');
-
+    const yesButtons = document.querySelectorAll('.yes');
+    const noButtons = document.querySelectorAll('.no');
+    
     function startQuestions() {
         document.getElementById('content').style.display = 'none';
         questions[currentQuestion].style.display = 'block';
@@ -150,6 +153,11 @@
         
         if (currentQuestion < questions.length) {
             questions[currentQuestion].style.display = 'block';
+
+            if (!answeredYes) {
+                yesButtons.forEach(btn => btn.classList.add('growing'));
+                noButtons.forEach(btn => btn.classList.add('shrinking'));
+            }
         } else {
             showVideo();
         }
@@ -165,6 +173,7 @@
         document.getElementById('video-container').style.display = 'block';
     }
 
+    // Show content after 5 seconds
     setTimeout(() => {
         document.getElementById('content').style.display = 'block';
     }, 5000);

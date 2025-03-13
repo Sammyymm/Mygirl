@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('https://streamable.com/q7p0bq') no-repeat center center/cover;
+            background: url('https://i.postimg.cc/D4KQF92v/image.jpg') no-repeat center center/cover;
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
@@ -30,7 +30,6 @@
             display: none;
         }
         button {
-            background: pink;
             border: none;
             padding: 10px;
             margin: 10px;
@@ -38,6 +37,13 @@
             cursor: pointer;
             border-radius: 5px;
             transition: all 0.3s ease;
+            color: white;
+        }
+        .yes {
+            background: green;
+        }
+        .no {
+            background: red;
         }
         .shrinking {
             transform: scale(0.8);
@@ -59,16 +65,12 @@
 <div id="content">
     <h2>My Love, I'm Sorry...</h2>
     <p>
-        
         At this point, if you ever leave me, I'd be in total devastation.  
         I trust you with everything, and I just hope you never give me a reason to regret it.  
-        I love you more than words can say.  I know I messed up, and I deeply regret it. The last thing I ever want is to make you feel unappreciated, unheard, or hurt.  
-            You mean the absolute world to me, and I don’t take you for granted.  
-            I love you more than words can express, and I just want to make things right between us.  
-            I’ve left my guard down completely for you, and at this point, if you ever left, I’d be devastated.  
-            You’re the one I trust with everything, and I never want to do anything to make you regret choosing me.  
-            Please forgive me, moyin. You’re too special to me to let this come between us.At this point, if you ever leave me, I'd be in total devastation.  
-        I trust you with everything, and I just hope you never give me a reason to regret it.  my dear laura 💙  
+        I love you more than words can say. I know I messed up, and I deeply regret it.  
+        The last thing I ever want is to make you feel unappreciated, unheard, or hurt.  
+        You mean the absolute world to me, and I don’t take you for granted.  
+        Please forgive me, moyin. You’re too special to me to let this come between us. 💙  
     </p>
     <button onclick="startQuestions()">Continue</button>
 </div>
@@ -76,7 +78,7 @@
 <!-- Interactive Questions -->
 <div id="questions">
     <div class="question-container">
-        <h3>moyin Are you still mad at me? 🥹</h3>
+        <h3>Are you still mad at me? 🥹</h3>
         <button class="yes" onclick="nextQuestion(true)">Yes</button>
         <button class="no" onclick="nextQuestion(false)">No</button>
     </div>
@@ -101,7 +103,7 @@
         <button class="no" onclick="nextQuestion(false)">No</button>
     </div>
     <div class="question-container">
-        <h3> do you want to forgive me🥰</h3>
+        <h3>Remember how happy we are together? 🥰</h3>
         <button class="yes" onclick="nextQuestion(true)">Yes</button>
         <button class="no" onclick="nextQuestion(false)">No</button>
     </div>

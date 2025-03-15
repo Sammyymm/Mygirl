@@ -286,15 +286,12 @@
     <!-- GIF Response Section -->
     <div id="gif-container" class="container">
       <h2>Thank you so much babyyy! I've missed you! Now we need to talk, DM or call? ❤️</h2>
-      <img
-        src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
-        alt="Cute gif"
-      />
+      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute gif">
     </div>
 
     <!-- Surprise Video Section -->
     <div id="video-container" class="container">
-      <video width="90%" controls autoplay>
+      <video id="surprise-video" width="90%" controls autoplay>
         <source src="https://files.catbox.moe/t28ds3.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -310,6 +307,17 @@
       // Pre-Check Logic
       function init() {
         document.getElementById("pre-check").style.display = "block";
+        
+        // Attach event listeners to the video element for pausing/resuming music
+        let videoElem = document.querySelector("#video-container video");
+        if(videoElem){
+          videoElem.addEventListener("play", function(){
+            document.getElementById("background-music").pause();
+          });
+          videoElem.addEventListener("ended", function(){
+            document.getElementById("background-music").play();
+          });
+        }
       }
       
       function choosePreCheck(option) {
@@ -484,4 +492,28 @@
         <button class="option-btn" onclick="checkSecAnswer(1, 'B')">B. 27</button>
         <button class="option-btn" onclick="checkSecAnswer(1, 'C')">C. 22</button>
         <button class="option-btn" onclick="checkSecAnswer(1, 'D')">D. 15</button>
-        <div class="sec-indicator" 
+        <div class="sec-indicator" id="indicator-1"></div>
+      </div>
+      <div class="security-question" id="sec-q2">
+        <h3>2. What color are Sammy's crush's eyes?</h3>
+        <button class="option-btn" onclick="checkSecAnswer(2, 'A')">A. Green</button>
+        <button class="option-btn" onclick="checkSecAnswer(2, 'B')">B. Yellow</button>
+        <button class="option-btn" onclick="checkSecAnswer(2, 'C')">C. Black</button>
+        <button class="option-btn" onclick="checkSecAnswer(2, 'D')">
+          D. Mesmerizing, breathtaking, definition of sunrise, warm and full of love, the power to leave me speechless, the color of every beautiful thing.
+        </button>
+        <div class="sec-indicator" id="indicator-2"></div>
+      </div>
+      <div class="security-question" id="sec-q3">
+        <h3>3. What is Sammy's babe's favorite drink?</h3>
+        <button class="option-btn" onclick="checkSecAnswer(3, 'A')">A. Fanta</button>
+        <button class="option-btn" onclick="checkSecAnswer(3, 'B')">B. Malt</button>
+        <button class="option-btn" onclick="checkSecAnswer(3, 'C')">C. Chapman</button>
+        <button class="option-btn" onclick="checkSecAnswer(3, 'D')">D. Orange Juice</button>
+        <div class="sec-indicator" id="indicator-3"></div>
+      </div>
+    </div>
+    
+    <!-- End of Project A Code -->
+  </body>
+</html>

@@ -29,65 +29,42 @@
         border-radius: 10px;
         margin: 10px auto;
       }
-      /* Pre-Check Landing */
-      #pre-check { display: none; }
-      /* Denied Screen */
-      #denied { display: none; }
-      /* Security Check Section */
-      #security-check { display: none; }
-      .security-question { display: none; margin-bottom: 20px; }
-      .sec-indicator { color: lightgreen; font-weight: bold; margin-top: 10px; }
-      .option-btn {
-        display: block;
-        margin: 8px auto;
-        padding: 10px;
-        font-size: 18px;
-        border: none;
-        border-radius: 5px;
-        width: 90%;
-        cursor: pointer;
-        white-space: normal;
-      }
-      .option-btn.green { background: green; color: white; }
-      .option-btn.red { background: red; color: white; }
-      /* Imposter Screen */
-      #imposter-screen { display: none; }
-      /* Welcome Screen */
-      #welcome { display: none; opacity: 0; transition: opacity 1s ease-in; }
-      /* Memory Loading Screen */
-      #memory-loading { display: none; }
-      /* Memory Session */
-      #memory-session { display: none; }
-      .memory-question { display: none; margin-bottom: 20px; }
-      /* Epistle 1 */
-      #epistle1 { display: none; opacity: 0; transition: opacity 1s ease-in; }
-      /* Epistle 2 (Second Apology) */
-      #epistle2 { display: none; opacity: 0; transition: opacity 1s ease-in; }
-      /* Interactive Questions Section (Forgiveness) */
-      #questions { display: none; }
-      .question-container { display: none; }
-      .btn {
-        border: none;
-        padding: 10px;
+      /* Hide elements by default */
+      .hidden { display: none; }
+      /* Button styling */
+      button {
+        padding: 10px 20px;
         margin: 10px;
-        font-size: 18px;
-        cursor: pointer;
+        border: none;
         border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        color: white;
         transition: all 0.3s ease;
-        width: 120px;
-        height: 50px;
       }
-      .yes { background: green; color: white; }
-      .no { background: red; color: white; }
-      /* Response Screens */
-      #gif-container, #video-container { display: none; }
+      button:hover {
+        background: linear-gradient(to right, #ff512f, #dd2476);
+      }
+      .green { background: green; color: white; }
+      .red { background: red; color: white; }
+      /* Epistle Typing Effect */
+      #epistle {
+        white-space: pre-line;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .question-container { display: none; }
+      #gif-container, #video-container, #stagebanter, #lyrics {
+        display: none;
+      }
       #gif-container img { width: 80%; }
       h2 { color: gold; }
       h3 { color: cyan; }
     </style>
   </head>
   <body onload="init()">
-
+  
     <!-- Pre-Check Landing Page -->
     <div id="pre-check" class="container">
       <h2>THIS SITE IS ONLY FOR SAMMY'S GIRL!</h2>
@@ -95,17 +72,17 @@
       <button class="option-btn green" onclick="choosePreCheck('HER')">HER</button>
       <button class="option-btn red" onclick="choosePreCheck('NAY')">NAY</button>
     </div>
-
+    
     <!-- Denied Screen -->
-    <div id="denied" class="container">
+    <div id="denied" class="container hidden">
       <h2>Access Denied!</h2>
       <p>Sorry, you are not authorized to access this site.</p>
     </div>
-
+    
     <!-- Security Check Section -->
-    <div id="security-check" class="container">
+    <div id="security-check" class="container hidden">
       <h2>Before you proceed...</h2>
-      <p>We need to know if you're Ebuka's girl – the one who controls his mood & emotions! 🥰</p>
+      <p>We need to know if you're Ebuka's girl – the one who controls his mood &amp; emotions! 🥰</p>
       
       <!-- Security Question 1 -->
       <div class="security-question" id="sec-q1">
@@ -139,26 +116,26 @@
         <div class="sec-indicator" id="indicator-3"></div>
       </div>
     </div>
-
+    
     <!-- Imposter Screen -->
-    <div id="imposter-screen" class="container">
+    <div id="imposter-screen" class="container hidden">
       <h2>You're an imposter! 😡🤬</h2>
       <img src="https://media.giphy.com/media/l2Sq6xVVfzuH3C4re/giphy.gif" alt="Angry GIF">
     </div>
-
+    
     <!-- Welcome Screen -->
-    <div id="welcome" class="container">
+    <div id="welcome" class="container hidden">
       <h2>Security check passed! Welcome baby.</h2>
     </div>
-
+    
     <!-- Memory Loading Screen -->
-    <div id="memory-loading" class="container">
+    <div id="memory-loading" class="container hidden">
       <h2>Memory lane loading...</h2>
       <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Loading GIF">
     </div>
-
+    
     <!-- Memory Session -->
-    <div id="memory-session" class="container">
+    <div id="memory-session" class="container hidden">
       <h2>Memory Lane</h2>
       <!-- Memory Question 1 -->
       <div class="memory-question" id="mem-q1">
@@ -192,7 +169,7 @@
       </div>
       <!-- Memory Question 7 -->
       <div class="memory-question" id="mem-q7">
-        <h3>Remember when I was jealous of you & Paul & Quam?</h3>
+        <h3>Remember when I was jealous of you &amp; Paul &amp; Quam?</h3>
         <button class="btn btn-green" onclick="nextMemory()">Next</button>
       </div>
       <!-- Memory Question 8 -->
@@ -201,14 +178,14 @@
         <button class="btn btn-green" onclick="finishMemory()">Continue</button>
       </div>
     </div>
-
+    
     <!-- Epistle 1 (First Apology Letter) with Typing Effect -->
-    <div id="epistle1" class="container">
+    <div id="epistle1" class="container hidden">
       <h2>My Love, I'm Sorry...</h2>
       <p id="epistle"></p>
       <button onclick="startInteractiveQuestions()">Continue</button>
     </div>
-
+    
     <!-- Interactive Questions Section (Forgiveness) -->
     <div id="questions" class="container">
       <!-- Question 1 -->
@@ -260,7 +237,7 @@
         <button class="no btn" onclick="finalInteractive(false)">No</button>
       </div>
     </div>
-
+    
     <!-- Epistle 2 (Second Apology Letter) for Final Interactive 'No' -->
     <div id="epistle2" class="container">
       <h2>My Girl...</h2>
@@ -282,13 +259,13 @@
       </p>
       <button onclick="showVideo()">Continue</button>
     </div>
-
+    
     <!-- GIF Response Section -->
     <div id="gif-container" class="container">
       <h2>Thank you so much babyyy! I've missed you! Now we need to talk, DM or call? ❤️</h2>
       <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute gif">
     </div>
-
+    
     <!-- Surprise Video Section -->
     <div id="video-container" class="container">
       <video id="surprise-video" width="90%" controls autoplay>
@@ -296,28 +273,61 @@
         Your browser does not support the video tag.
       </video>
       <h2>No matter what, I love you. I'm here when you're ready ❤️.</h2>
+      <!-- Continue Button to Stage Banter -->
+      <button onclick="showStageBanter()">Continue</button>
     </div>
-
+    
+    <!-- Stage Banter Section -->
+    <div id="stagebanter" class="container hidden">
+      <h2>Stage Banter</h2>
+      <button class="option-btn green" onclick="showLyrics()">
+        <span style="font-size:50px;">🎤</span> LYRICS THAT REPRESENTS YOU
+      </button>
+      <div id="lyrics" class="hidden">
+        <p>
+          You know it's not the same as it was - Harry Styles<br>
+          I think we talked about a TV show that you liked. Something I forgot cos I was thinking "whoa, her eyes are real?" - BWU<br>
+          I lose my brain cells when I'm with you - Boywithuke<br>
+          I fell through the fuckin room when I saw you walking through the hallway zone - BWU<br>
+          It's the reason I'm afraid, you're the thoughts that can't be tamed and I'm trying to be sane - Dream<br>
+          Sorry but I can't just stop liking you, I hope these other guys won't see you as pretty as I do - BWU<br>
+          I'll see you soon 'cause I miss you - BWU<br>
+          Please don't break my heart - BWU<br>
+          I know I might seem childish coding this - BWU<br>
+          This ain't good for my health, no this ain't good for my health - BWU
+        </p>
+      </div>
+    </div>
+    
     <!-- Background Music -->
     <audio id="background-music" loop>
       <source src="https://files.catbox.moe/j0odtp.mp3" type="audio/mp3">
     </audio>
-
+    
     <script>
       // Pre-Check Logic
       function init() {
         document.getElementById("pre-check").style.display = "block";
         
-        // Attach event listeners to the video element for pausing/resuming music
-        let videoElem = document.querySelector("#video-container video");
-        if(videoElem){
-          videoElem.addEventListener("play", function(){
+        // Add event listeners for video to pause/resume music
+        let videoElem = document.getElementById("surprise-video");
+        if (videoElem) {
+          videoElem.addEventListener("play", function () {
             document.getElementById("background-music").pause();
           });
-          videoElem.addEventListener("ended", function(){
+          videoElem.addEventListener("ended", function () {
             document.getElementById("background-music").play();
           });
         }
+      }
+      
+      function showStageBanter() {
+        document.getElementById("video-container").classList.add("hidden");
+        document.getElementById("stagebanter").classList.remove("hidden");
+      }
+      
+      function showLyrics() {
+        document.getElementById("lyrics").classList.remove("hidden");
       }
       
       function choosePreCheck(option) {
@@ -473,47 +483,6 @@
         document.getElementById("video-container").style.display = "block";
       }
     </script>
-    
-    <!-- Pre-Check HTML (for proper load order) -->
-    <div id="pre-check" class="container">
-      <h2>THIS SITE IS ONLY FOR SAMMY'S GIRL!</h2>
-      <p>Are you her or are you NAY?</p>
-      <button class="option-btn green" onclick="choosePreCheck('HER')">HER</button>
-      <button class="option-btn red" onclick="choosePreCheck('NAY')">NAY</button>
-    </div>
-    
-    <!-- Security Check HTML -->
-    <div id="security-check" class="container">
-      <h2>Before you proceed...</h2>
-      <p>We need to know if you're Ebuka's girl – the one who controls his mood & emotions! 🥰</p>
-      <div class="security-question" id="sec-q1">
-        <h3>1. What's Taylor Swift's lucky number?</h3>
-        <button class="option-btn" onclick="checkSecAnswer(1, 'A')">A. 13</button>
-        <button class="option-btn" onclick="checkSecAnswer(1, 'B')">B. 27</button>
-        <button class="option-btn" onclick="checkSecAnswer(1, 'C')">C. 22</button>
-        <button class="option-btn" onclick="checkSecAnswer(1, 'D')">D. 15</button>
-        <div class="sec-indicator" id="indicator-1"></div>
-      </div>
-      <div class="security-question" id="sec-q2">
-        <h3>2. What color are Sammy's crush's eyes?</h3>
-        <button class="option-btn" onclick="checkSecAnswer(2, 'A')">A. Green</button>
-        <button class="option-btn" onclick="checkSecAnswer(2, 'B')">B. Yellow</button>
-        <button class="option-btn" onclick="checkSecAnswer(2, 'C')">C. Black</button>
-        <button class="option-btn" onclick="checkSecAnswer(2, 'D')">
-          D. Mesmerizing, breathtaking, definition of sunrise, warm and full of love, the power to leave me speechless, the color of every beautiful thing.
-        </button>
-        <div class="sec-indicator" id="indicator-2"></div>
-      </div>
-      <div class="security-question" id="sec-q3">
-        <h3>3. What is Sammy's babe's favorite drink?</h3>
-        <button class="option-btn" onclick="checkSecAnswer(3, 'A')">A. Fanta</button>
-        <button class="option-btn" onclick="checkSecAnswer(3, 'B')">B. Malt</button>
-        <button class="option-btn" onclick="checkSecAnswer(3, 'C')">C. Chapman</button>
-        <button class="option-btn" onclick="checkSecAnswer(3, 'D')">D. Orange Juice</button>
-        <div class="sec-indicator" id="indicator-3"></div>
-      </div>
-    </div>
-    
-    <!-- End of Project A Code -->
+  
   </body>
 </html>
